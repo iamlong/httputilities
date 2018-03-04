@@ -1,11 +1,11 @@
 class FileDownloader {
     constructor(){
-        this.asycDownload = function (url, filepath, successcallback, failurecallback){
+        this.AsycSingleDownload = function (url, filepath, successcallback, failurecallback){
             var httpclient = require('urllib');
             httpclient.request(url, function(err, data, res){
                 if(err){
                     console.log('error during download %s \n %s', url, err);
-                    failurecallback(res, err);
+                    failurecallback(err, res);
                 };
                 
                 var fs = require('fs');
@@ -13,13 +13,13 @@ class FileDownloader {
                     fs.writeFileSync(filepath, data.toString());
                 }catch (err){
                     console.log ('error during writing file %s \n %s', filepath, err);
-                    failurecallback(res, err);
+                    failurecallback(err, res);
                 }
                 successcallback('success');
             });
         }
         
-        this.PromiseDownload = function (url, filepath){
+        this.PromiseSingleDownload = function (url, filepath){
             function downloadPromise (url){
                 return new Promise(function(resolve, reject){
                     var httpclient = require('urllib');
@@ -52,6 +52,13 @@ class FileDownloader {
             }).catch(function onrejected(err){
                 console.error(err);
             })
+        }
+
+        this.PromiseMultiDownloads = function (downloadtasks){
+           
+            //using async module to
+            //  1. perform all download task from downloadtasks array
+            //  2. after all the downloads are finished, 
         }
     }
     
