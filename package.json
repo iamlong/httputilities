@@ -1,0 +1,13 @@
+{
+  "name": "testutility",
+  "version": "1.0.0",
+  "description": "Test http utilities",
+  "author": "iamlong",
+  "main": "test.js",
+  "scripts": {
+    "start": "node test.js"
+  },
+  "dependencies": {
+    "urllib": "^2.26.0"
+  }
+}
