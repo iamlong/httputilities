@@ -55,10 +55,29 @@ class FileDownloader {
         }
 
         this.PromiseMultiDownloads = function (downloadtasks){
+            
+            function download(task) {
+                return function (downloaddone){
+                    return _download(task, downloaddone);
+                }
+            }
            
+            //PromiseMultiDownloads perform download remote resource simultainously.
+            //Args:
+            //  downloadtasks: array of download task. Each download task item is combination of url and filepath
+            //return:
+            //  promise object so that caller can handle through then/reject
+
+            //performdownloads is an array of functions which will be able to call by async to download files parallelly.
+            var downloadfunctions = [];
+            //firstly, generate download functions
+            for( var item in downloadtasks)
+                downloadfunctions.push(download(item));
+            
             //using async module to
             //  1. perform all download task from downloadtasks array
-            //  2. after all the downloads are finished, 
+            //  2. after all the downloads are finished, continue the work through then
+
         }
     }
     
