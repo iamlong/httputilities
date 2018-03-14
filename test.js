@@ -12,15 +12,15 @@ function downloadfailure(res, error){
 //fdownload.AsycSingleDownload('http://www.baidu.com', './a.html', downloadsuccess, downloadfailure);
 
 //fdownload.PromiseSingleDownload('http://www.baidu.com', './a.html').then(function onfullfill(){console.log('PromiseDownload Finish')});
-
-var task = {
+var downloadtasks = [];
+downloadtasks.push({
     url:'http://www.baidu.com',
     filepath:'./1.html'
-}
-var downloadtasks = [];
-downloadtasks.push(task);
-task.url='http://news.sina.com.cn';
-task.filepath='./2.html';
-downloadtasks.push(task);
+});
+
+downloadtasks.push({
+    url:'http://news.sina.com.cn',
+    filepath:'./2.html'
+});
 
 fdownload.PromiseMultiDownloads(downloadtasks).then(function onfullfill(){console.log('PromiseMultiDownload Finish')});
