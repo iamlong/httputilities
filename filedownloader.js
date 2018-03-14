@@ -67,8 +67,6 @@ class FileDownloader {
         this.PromiseMultiDownloads = function (downloadtasks) {
 
             function download(task, _PromiseSingleDownload) {
-                var _task = task;
-                console.log(_task);
                 return function (downloaddone) {
                     return _download(_task, _PromiseSingleDownload, downloaddone);
                 }
@@ -88,13 +86,10 @@ class FileDownloader {
 
             var downloadfunctions = [];
             //firstly, generate download functions array
-            for (var item in downloadtasks){
-                console.log(downloadtasks[item]);
+            for (var item in downloadtasks)
                 downloadfunctions.push(download(downloadtasks[item], this._PromiseSingleDownload));
-            }
+
             return new Promise(function (resolve, reject) {
-
-
                 //using async module to
                 //  1. perform all download task from downloadtasks array
                 //  2. after all the downloads are finished, continue the work through then with 
