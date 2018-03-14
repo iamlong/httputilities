@@ -8,6 +8,8 @@
     "start": "node test.js"
   },
   "dependencies": {
+    "async": "^2.6.0",
+    "graceful-fs": "^4.1.11",
     "urllib": "^2.26.0"
   }
 }
