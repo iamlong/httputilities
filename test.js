@@ -35,8 +35,8 @@ fdownload.PromiseMultiDownloads(downloadtasks, 1).then(
     function onfullfill(result) {
         console.log('PromiseMultiDownload Finish')
     }).catch(
-    (err, results) => {
-        console.error(err)
+    (err) => {
+        console.error(err.err)
     });
 
 downloadtasks.push({
@@ -53,6 +53,6 @@ fdownload.PromiseMultiDownloads(downloadtasks, 1).then(
     function onfullfill(result) {
         console.log('PromiseMultiDownload Finish')
     }).catch(
-    (err, results) => {
-        console.error(err)
+    (err) => {
+        console.error(err.err)
     });
