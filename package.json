@@ -5,7 +5,8 @@
   "author": "iamlong",
   "main": "test.js",
   "scripts": {
-    "start": "node test.js"
+    "start": "node test.js",
+    "test": "node ./test/test.js"
   },
   "dependencies": {
     "async": "^2.6.0",

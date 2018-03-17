@@ -1,4 +1,4 @@
-const filedownloader = require('./filedownloader');
+const filedownloader = require('../utils/filedownloader');
 
 fdownload = new filedownloader();
 
