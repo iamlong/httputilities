@@ -1,4 +1,3 @@
-
 const filedownloader = require('../utils/filedownloader');
 
 
@@ -9,20 +8,39 @@ fd = new filedownloader();
 describe('Test FileDownloader', function () {
     this.timeout(10000);
     describe('Test Single Download', function (done) {
-        it('Single Download Promise', function (done) {
-                fd.PromiseSingleDownload('https://www.baidu.com', './a.html').then(
+        it('Single Download Promise Pass', function (done) {
+            fd.PromiseSingleDownload('https://www.baidu.com', './a.html').then(
+                function onfullfill(result) {
+                    assert.equal(result.success, true);
+                },
+                function onReject(result) {
+                    assert.equal(result.success, false);
+                }
+            ).catch(
+                (result) => {
+                    assert.equal(result.success, false);
+                }
+            ).then(done, done);
+        });
+        it('Single Download Promise with bad url', function (done) {
+            fd.PromiseSingleDownload('https://wwwwe.baidu.com', './a.html')
+                .then(
                     function onfullfill(result) {
                         assert.equal(result.success, true);
                     },
                     function onReject(result) {
                         assert.equal(result.success, false);
                     }
-                ).catch(
+                )
+                .catch(
                     (result) => {
                         assert.equal(result.success, false);
                     }
                 ).then(done, done);
-        })
+        });
+    });
+    describe('Multi Download Promise Test', function (done){
+        
     })
 })
 /* fdownload = new filedownloader();
