@@ -9,7 +9,7 @@
             "type": "node",
             "request": "launch",
             "name": "Launch Program",
-            "program": "${workspaceFolder}/test/test.js"
+            "program": "${workspaceFolder}/node_modules/mocha/bin/mocha"
         }
     ]
 }

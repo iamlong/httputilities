@@ -44,6 +44,12 @@ class FileDownloader {
                     result.err = err;
                     reject(result);
                 }
+            }, function onrejected(result){
+                console.error('error during download url %s \n', url);
+                result.success = false;
+                result.err = err;
+                result.data = null;
+                reject(result);
             }).catch(function onrejected(err) { //catch error during url download
                 console.error('error during download url %s \n', url);
                 result.success = false;

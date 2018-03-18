@@ -1,6 +1,31 @@
+
 const filedownloader = require('../utils/filedownloader');
 
-fdownload = new filedownloader();
+
+var assert = require('assert');
+
+fd = new filedownloader();
+
+describe('Test FileDownloader', function () {
+    this.timeout(10000);
+    describe('Test Single Download', function (done) {
+        it('Single Download Promise', function (done) {
+                fd.PromiseSingleDownload('https://www.baidu.com', './a.html').then(
+                    function onfullfill(result) {
+                        assert.equal(result.success, true);
+                    },
+                    function onReject(result) {
+                        assert.equal(result.success, false);
+                    }
+                ).catch(
+                    (result) => {
+                        assert.equal(result.success, false);
+                    }
+                ).then(done, done);
+        })
+    })
+})
+/* fdownload = new filedownloader();
 
 function downloadsuccess(value) {
     console.log(value);
@@ -55,4 +80,4 @@ fdownload.PromiseMultiDownloads(downloadtasks, 1).then(
     }).catch(
     (err) => {
         console.error(err.err)
-    });
+    }); */
