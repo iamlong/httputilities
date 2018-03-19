@@ -39,8 +39,50 @@ describe('Test FileDownloader', function () {
                 ).then(done, done);
         });
     });
-    describe('Multi Download Promise Test', function (done){
-        
+    describe('Multi Download Promise Test', function (done) {
+        this.timeout(10000);
+        var downloadtasks = [];
+        it('Multi Download Pass', function (done) {
+            downloadtasks.push({
+                url: 'http://www.baidu.com',
+                filepath: './1.html'
+            });
+
+            downloadtasks.push({
+                url: 'http://news.sina.com.cn',
+                filepath: './2.html'
+            });
+            fd.PromiseMultiDownloads(downloadtasks, 1)
+                .then(
+                    function (result) {
+                        assert.equal(result.success, true);
+                    },
+                    function (result) {
+                        assert.equal(result.success, false);
+                    }
+                ).then(done, done)
+        });
+
+        it('Multi Download Pass', function (done) {
+            downloadtasks.push({
+                url: 'http://www.baidu.com',
+                filepath: './1.html'
+            });
+
+            downloadtasks.push({
+                url: 'http://news.sina.com.cn',
+                filepath: './2.html'
+            });
+            fd.PromiseMultiDownloads(downloadtasks, 5)
+                .then(
+                    function (result) {
+                        assert.equal(result.success, true);
+                    },
+                    function (result) {
+                        assert.equal(result.success, false);
+                    }
+                ).then(done, done)
+        });
     })
 })
 /* fdownload = new filedownloader();
