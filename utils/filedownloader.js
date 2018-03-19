@@ -1,4 +1,3 @@
-//import { isNullOrUndefined } from 'util';
 
 class FileDownloader {
     _PromiseSingleDownload(url, filepath) {
