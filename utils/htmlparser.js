@@ -1,3 +1,6 @@
+//笔趣网
+//title: \b*<meta property=\"og:title" content="(.*)" />.\n
+
 
 class HtmlParser {
     constructor (){
