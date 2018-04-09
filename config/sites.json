@@ -1,0 +1,16 @@
+{
+    "sites" : [
+        {
+            "site" : "笔趣网",
+            "domain": "www.shuquge.com",
+            "booktitle": "\b*<meta property=\"og:title\" content=\"(.*)\" \/>.",
+            "bookdescription": "\b*<meta property=\"og:description\" content=\"(.*)",
+            "bookimage": "\b*<meta property=\"og:image\" content=\"(.*)\" />",
+            "bookauthor": "\b*<meta property=\"og:novel:author\" content=\"(.*)\" />",
+            "bookdirctstart": "<div class=\"listmain\">.*\r\n.*<dl>\r\n.*<dt>\r\n.*\r\n.*</dt>\r\n(.*<dd>.*</dd>\r\n)*.*<dt>.*</dt>\r\n",
+            "bookdirctend": "</dl>.*\r\n.*</div>.*\r\n.*<script>list3\\(\\);</script>",
+            "bookdirctitem": "<dd><a href=\"\(.*\)\">\(.*\)</a></dd>"
+        }
+
+    ]
+}

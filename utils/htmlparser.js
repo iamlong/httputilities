@@ -7,7 +7,7 @@ import { isNullOrUndefined } from "util";
 //Author: \b*<meta property=\"og:novel:author\" content=\"(.*)\" />
 //Directory Start: <div class=\"listmain\">.*\r\n.*<dl>\r\n.*<dt>\r\n.*\r\n.*</dt>\r\n(.*<dd>.*</dd>\r\n)*.*<dt>.*</dt>\r\n
 //Directory End: </dl>.*\r\n.*</div>.*\r\n.*<script>list3\\(\\);</script>
-//Directory item: <dd><a href=\"\(.*\)\">\(.*\)</a></dd> 
+//Directory item: <dd><a href=\"\(.*\)\">\(.*\)</a></dd>
 
 class HtmlParser {
     constructor (){
