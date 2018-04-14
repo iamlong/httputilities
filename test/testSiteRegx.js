@@ -3,13 +3,13 @@ var assert = require('assert');
 
 
 describe('Test SiteRegx Setting', function () {
-    it('Set sites', function (done) {
-        var sitereg1 = new htmlparser.SiteRegx('ABCDE');
-        var sitereg2 = new htmlparser.SiteRegx('FGHIJK');
+    const fs = require('fs');
+    const str = fs.readFileSync('./config/sites.json');
+    const sites = JSON.parse(str);
 
-        assert.equal(sitereg1.domain, 'ABCDE');
-        assert.equal(sitereg2.domain, 'FGHIJK');
-        console.log(sitereg1);
+     it('Set sites', function (done) {
+        var sitereg1 = new htmlparser.SiteRegx(sites.sites[0].site, sites.sites[0].domain,sites.sites[0].booktitle, sites.sites[0].bookdescription, sites.sites[0].bookimage, sites.sites[0].bookauthor, sites.sites[0].bookdirctstart, sites.sites[0].bookdirctend, sites.sites[0].bookdirctitem);
+        assert.equal(sitereg1.domain, 'www.shuquge.com');
         done();
     })
 })

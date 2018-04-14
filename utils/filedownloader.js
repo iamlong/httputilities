@@ -3,13 +3,13 @@ class FileDownloader {
     _PromiseSingleDownload(url, filepath) {
         function downloadPromise(url) {
             return new Promise(function (resolve, reject) {
-                var ret = {
+                const ret = {
                     success: true,
                     err: null,
                     res: null,
                     data: null
                 }
-                var httpclient = require('urllib');
+                const httpclient = require('urllib');
                 httpclient.request(url, function (err, data, res) {
                     ret.res = res;
                     ret.data = data;
@@ -24,14 +24,14 @@ class FileDownloader {
             })
         };
 
-        var result = {
+        const result = {
             success: true,
             err: null,
         };
 
         return new Promise(function (resolve, reject) {
             downloadPromise(url).then(function onfulfilled(value) {
-                var fs = require('fs');
+                const fs = require('fs');
                 try {
                     fs.writeFileSync(filepath, value.data.toString());
                     result.success = true;
@@ -58,14 +58,14 @@ class FileDownloader {
 
     constructor() {
         this.AsycSingleDownload = function (url, filepath, successcallback, failurecallback) {
-            var httpclient = require('urllib');
+            const httpclient = require('urllib');
             httpclient.request(url, function (err, data, res) {
                 if (err) {
                     console.log('error during download %s \n %s', url, err);
                     failurecallback(err, res);
                 };
 
-                var fs = require('fs');
+                const fs = require('fs');
                 try {
                     fs.writeFileSync(filepath, data.toString());
                 } catch (err) {
@@ -105,13 +105,13 @@ class FileDownloader {
                     });
             }
 
-            var downloadfunctions = [];
+            const downloadfunctions = [];
             //firstly, generate download functions array
-            for (var item in downloadtasks)
+            for (const item in downloadtasks)
                 downloadfunctions.push(download(downloadtasks[item], this._PromiseSingleDownload));
 
             return new Promise(function (resolve, reject) {
-                var ret = {
+                const ret = {
                     success: true,
                     results: null,
                     err: null
@@ -119,7 +119,7 @@ class FileDownloader {
                 //using async module to
                 //  1. perform all download task from downloadtasks array
                 //  2. after all the downloads are finished, continue the work through then with 
-                var async = require('async');
+                const async = require('async');
                 async.parallelLimit(downloadfunctions, parallelsize, function (err, results) {
                     ret.results = results;
                     if (err == null) 

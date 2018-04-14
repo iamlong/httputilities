@@ -1,4 +1,4 @@
-import { isNullOrUndefined } from "util";
+//import { isNullOrUndefined } from "util";
 
 //笔趣网
 //title: \b*<meta property=\"og:title\" content=\"(.*)\" \/>.
@@ -45,12 +45,16 @@ class HtmlParser {
 }
 
 class SiteRegx {
-    constructor (domain, titlereg, authorreg, imagereg, directoryreg){
+    constructor (site, domain, titlereg, descriptionreg, imagereg, authorreg, directorystartreg, directoryendreg, bookitemreg){
+        this.site = site;
         this.domain = domain;
         this.title_regx =titlereg;
-        this.author_regx = authorreg;
+        this.description_regx = descriptionreg;
         this.image_regx = imagereg;
-        this.directory_regx = directoryreg;
+        this.author_regx = authorreg;
+        this.directorystart_regx = directorystartreg;
+        this.directoryend_regx = directorystartreg;
+        this.bookitem_regx = bookitemreg;
     }
 }
 
