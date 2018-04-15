@@ -1,7 +1,7 @@
 const filedownloader = require('../utils/filedownloader');
 
 
-var assert = require('assert');
+const assert = require('assert');
 
 fd = new filedownloader();
 
@@ -41,7 +41,7 @@ describe('Test FileDownloader', function () {
     });
     describe('Multi Download Promise Test', function (done) {
         this.timeout(10000);
-        var downloadtasks = [];
+        const downloadtasks = [];
         it('Multi Download Pass', function (done) {
             downloadtasks.push({
                 url: 'http://www.baidu.com',
