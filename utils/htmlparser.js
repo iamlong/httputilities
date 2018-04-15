@@ -23,7 +23,7 @@ class HtmlParser {
 
             function _getBookMetaData(html, regx) {
                 const ret = regx.exec(html);
-                if (ret.length >1 )
+                if (ret.length > 1)
                     return ret[1];
                 else
                     return null;

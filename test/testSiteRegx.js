@@ -1,4 +1,4 @@
-const htmlparser = require('../utils/htmlparser').default;
+var htmlparser = require('../utils/htmlparser');
 const assert = require('assert');
 
 
