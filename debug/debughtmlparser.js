@@ -1,5 +1,5 @@
 const fs = require('fs');
-const htmlstr = fs.readFileSync('./debug/book.html', 'utf-8');
+const htmlstr = fs.readFileSync('./test/book.html', 'utf-8');
 
 const str = fs.readFileSync('./config/sites.json');
 const sites = JSON.parse(str);

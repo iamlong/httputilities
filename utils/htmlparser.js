@@ -84,6 +84,7 @@ class BookInfo {
         this.author = '';
         this.description = '';
         this.image = '';
+        this.baseURL = '';
         this.directory = [];
     }
 }
