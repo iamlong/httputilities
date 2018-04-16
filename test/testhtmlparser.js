@@ -21,6 +21,18 @@ describe('HTML Parser Utility', function () {
         const book = fileparser.ParseBook(htmlstr, siteregx);
         assert.equal(book.title, "修真聊天群");
         assert.equal(book.directory.length, 1866);
+
+        book.setBookBase ("http://www.shuquge.com/txt/30668");
+        assert.equal(book.baseURL, "http://www.shuquge.com/txt/30668/");
+
+        book.setBookBase("http://www.shuquge.com/txt/30668/");
+        assert.equal(book.baseURL, "http://www.shuquge.com/txt/30668/");
+
+        book.genBookLinks();
+        assert.equal(book.downloaddir.length, book.directory.length);
+        for (i=0; i<book.length;i++)
+            assert.equal(book.downloaddir[i].page, book.directory[i].page);
+
         done();
 
     });
