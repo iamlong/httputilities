@@ -97,6 +97,7 @@ class BookInfo {
             this.directory.forEach(element => {
                 this.downloaddir.push({
                     title : element.title,
+                    page: element.page,
                     downloadurl : this.baseURL + element.page
                 });
             });
