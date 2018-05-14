@@ -25,6 +25,7 @@ bdler.createDownloadJob(book, './debug/temp');
 bdler.PromiseDownloadBook().then(
     function onFulfill(result){
         console.log(result);
+        console.log(bdler.bookjob.status);
     },
     function OnReject(result){
         console.log(result);

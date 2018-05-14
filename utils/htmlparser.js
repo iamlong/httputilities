@@ -86,20 +86,17 @@ class BookInfo {
         this.image = '';
         this.baseURL = '';
         this.directory = [];
-        this.downloaddir = [];
         this.setBookBase = function (baseURL) {
             this.baseURL = baseURL;
             if (this.baseURL[this.baseURL.length-1] != '/')
                 this.baseURL += '/';
         };
         this.genBookLinks = function (){
-            this.downloaddir = [];
+            var i = 0;
             this.directory.forEach(element => {
-                this.downloaddir.push({
-                    title : element.title,
-                    page: element.page,
-                    downloadurl : this.baseURL + element.page
-                });
+                this.directory[i].downloadurl = this.baseURL + element.page;
+                this.directory[i].index = i;
+                i++;
             });
         };
     }

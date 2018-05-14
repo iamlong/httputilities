@@ -1,5 +1,5 @@
-const fdownloader = require('./filedownloader');
-fd = new fdownloader();
+//const fdownloader = require('./filedownloader');
+//fd = new fdownloader();
 
 class BookDownloader {
     constructor() {
@@ -7,27 +7,35 @@ class BookDownloader {
             this.bookjob = new BookDownloadJob(bookinfo, localpath);
         };
 
-        //this.fdownloader = new(require('../utils/filedownloader'))();
+        this.fdownloader = new(require('../utils/filedownloader'))();
 
         this.PromiseDownloadBook = function () {
             const downloadtasks = [];
-            this.bookjob.downloadjob.downloaditems.forEach(item => {
+            const downloadjob = this.bookjob;
+            const fd = this.fdownloader;
+
+            this.bookjob.bookinfo.directory.forEach(item => {
                 downloadtasks.push({
                     url: item.downloadurl,
-                    filepath: item.localpath
+                    filepath: item.localpath,
+                    index: item.index
                 })
             });
 
-            return new Promise(function (resolve, reject){
+            return new Promise(function (resolve, reject) {
 
-
-                fd.PromiseMultiDownloads( downloadtasks, 10)
-                    .then(function onfulfilled(result){
-                        this.bookjob.status = 'success';
-                        resulve(result);
-                    }, function onrejected(result){
-                        this.bookjob.status = 'error';
+                fd.PromiseMultiDownloads(downloadtasks, 20)
+                    .then(function onfulfilled(result) {
+                        downloadtasks.forEach(item => {
+                            downloadjob.bookinfo.directory[item.index].status = item.finishstate;
+                        })
+                        downloadjob.status = 'success';
+                        resolve(result);
+                    }, function onrejected(result) {
+                        downloadjob.status = 'error';
                         reject(result);
+                    }).catch(function (error) {
+                        reject(error);
                     })
             })
 
@@ -43,19 +51,11 @@ class BookDownloadJob {
         this.localpath = localpath;
         if (this.localpath[this.localpath.length - 1] != '/')
             this.localpath += '/';
-        this.downloadjob = {
-            downloaditems: [],
-            status: 'pending'
-        };
 
-        bookinfo.downloaddir.forEach(item => {
-            this.downloadjob.downloaditems.push({
-                title: item.title,
-                page: item.page,
-                downloadurl: item.downloadurl,
-                localpath: this.localpath + item.page,
-                status: 'pending'
-            })
+        bookinfo.directory.forEach(item => {
+
+           item.localpath = this.localpath + item.page;
+           item.status = 'pending';
         })
 
     }
