@@ -7,6 +7,12 @@
         {
             "type": "node",
             "request": "launch",
+            "name": "Debug XML",
+            "program": "${workspaceFolder}/debug/debugxml.js"
+        },
+        {
+            "type": "node",
+            "request": "launch",
             "name": "Debug BookDownloader",
             "program": "${workspaceFolder}/debug/debugbookdownloader.js"
         },
