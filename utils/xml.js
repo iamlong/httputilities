@@ -4,6 +4,7 @@ function xml_encode(str) {
     str = str.replace(/>/, "&gt;");
     str = str.replace(/'/, "&apos;");
     str = str.replace(/"/, "&quot;");
+    str = str.replace(/ /, "&nbsp;");
     return str;
 };
 
@@ -25,11 +26,18 @@ class xml_element {
             this.properties.push(p);
         }
 
+        /*this.addProperty = function (name, value) {
+            this.properties.push(new xml_property(name, value));
+        }*/
+
         this.addChildElement = function (e) {
-            if (typeof (this.value) == "undefined" || Array.isArray(this.value)) {
+            if (typeof (this.value) == "undefined" ) {
                 this.value = [];
                 this.value.push(e);
-            }
+            } else if (Array.isArray(this.value))
+                this.value.push(e);
+            else
+                throw ("value is already set, not allow child!");
                 
         }
         this.setValue = function (v) {

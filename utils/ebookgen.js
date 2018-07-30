@@ -11,10 +11,10 @@ class opf {
     }
 };
 
-class ebookgen {
+class ebook {
     constructor(bookinfo) {
         this.bookinfo = bookinfo;
-        this.opf = {
+        /*this.opf = {
             package: {
                 properties: [{
                     version: "1.0",
@@ -55,13 +55,18 @@ class ebookgen {
                 bindings: {},
                 collection: []
             },
-        };
+        };*/
+
+        this.xml = require('./xml');
+        this.opf = new this.xml.xml_element('opf');
+
 
         function genBookid() {
             sha.update("eBookGen" + this.bookinfo.title)
             return (sha.getHash(HEX));
         }
         this.genEBook = function (bookinfo) {
+            identifier = new this.xml.xml_element('dc:identifier');
             this.bookinfo = bookinfo;
             this.opf.identifier = genBookid();
             this.opf.package.metadata.title = this.bookinfo.title;
